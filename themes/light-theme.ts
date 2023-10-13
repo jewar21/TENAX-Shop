@@ -1,35 +1,34 @@
-import { createTheme } from '@mui/material/styles';
-
+import { createTheme } from "@mui/material/styles";
 
 export const lightTheme = createTheme({
   palette: {
-    mode: 'light',
+    mode: "light",
     primary: {
-      main: '#0E0E1B'
+      main: "#0E0E1B"
     },
     secondary: {
-      main: '#8E3FFA'      
+      main: "#8E3FFA"
     },
     info: {
-      main: '#fff'
+      main: "#fff"
     }
   },
   components: {
     MuiLink: {
       defaultProps: {
-        underline: 'none',
-      },
+        underline: "none"
+      }
     },
     MuiAppBar: {
       defaultProps: {
         elevation: 0,
-        position: 'fixed',
+        position: "fixed"
       },
       styleOverrides: {
         root: {
-          backgroundColor: 'white',
+          backgroundColor: "white",
           height: 60
-        },
+        }
       }
     },
 
@@ -50,28 +49,26 @@ export const lightTheme = createTheme({
       }
     },
 
-
     MuiButton: {
       defaultProps: {
-        variant: 'contained',
-        size: 'small',
+        variant: "contained",
+        size: "small",
         disableElevation: true,
+        color: "info"
       },
       styleOverrides: {
         root: {
-          backgroundColor: '#fff',
-          color: '#0E0E1B',
-          textTransform: 'none',
-          boxShadow: 'none',
+          textTransform: "none",
+          boxShadow: "none",
           borderRadius: 10,
           ":hover": {
-            background: 'linear-gradient(135deg, rgba(101, 39, 251, 0.5), rgba(137, 59, 250, 0.3))',
-            transition: 'all 0.3s ease-in-out'
+            background:
+              "linear-gradient(135deg, rgba(101, 39, 251, 0.5), rgba(137, 59, 250, 0.3))",
+            transition: "all 0.3s ease-in-out"
           }
         }
       }
     },
-
 
     MuiCard: {
       defaultProps: {
@@ -79,11 +76,10 @@ export const lightTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          boxShadow: '0px 5px 5px rgba(0,0,0,0.05)',
-          borderRadius: '10px',
+          boxShadow: "0px 5px 5px rgba(0,0,0,0.05)",
+          borderRadius: "10px"
         }
       }
     }
-    
   }
 });

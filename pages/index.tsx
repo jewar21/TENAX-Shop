@@ -6,10 +6,6 @@ import ProductList from '@/components/products/ProductList'
 import { useProducts } from '@/hooks'
 import FSLoading from '@/components/ui/FSLoading'
 
-// DATA
-// import { initialData } from '@/database/products'
-
-
 
 const HomePage: NextPage = () => {
 

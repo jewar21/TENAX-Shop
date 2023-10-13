@@ -1,8 +1,12 @@
 import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 import { AppBar, Badge, Box, Button, IconButton, Link, Toolbar, Typography } from "@mui/material"
 import { SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material'
 
 const Navbar = () => {
+
+    const { asPath } = useRouter()
+
     return (
         <AppBar>
             <Toolbar>
@@ -18,17 +22,17 @@ const Navbar = () => {
                 <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                     <NextLink href="/category/men" passHref legacyBehavior>
                         <Link>
-                            <Button>Hombres</Button>
+                            <Button color={asPath === '/category/men' ? 'secondary' : 'info'}>Hombres</Button>
                         </Link>
                     </NextLink>
                     <NextLink href="/category/women" passHref legacyBehavior>
                         <Link>
-                            <Button>Mujeres</Button>
+                            <Button color={asPath === '/category/women' ? 'secondary' : 'info'} sx={{mx: 1}}>Mujeres</Button>
                         </Link>
                     </NextLink>
-                    <NextLink href="/category/men" passHref legacyBehavior>
+                    <NextLink href="/category/kid" passHref legacyBehavior>
                         <Link>
-                            <Button>Niños</Button>
+                            <Button color={asPath === '/category/kid' ? 'secondary' : 'info'}>Niños</Button>
                         </Link>
                     </NextLink>
                 </Box>
@@ -40,7 +44,7 @@ const Navbar = () => {
                 </IconButton>
 
                 <NextLink href="/cart" passHref legacyBehavior>
-                    <Link>
+                    <Link sx={{mx:1}}>
                         <IconButton>
                             <Badge badgeContent={2} color="secondary">
                                 <ShoppingCartOutlined />

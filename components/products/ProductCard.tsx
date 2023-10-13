@@ -15,8 +15,8 @@ const ProductCard: FC<Props> = ({ product }) => {
     const productImageAndClassName = useMemo(() => {
         const className = isHovered ? 'slideRight' : '';
         const image = isHovered
-            ? `products/${product.images[1]}`
-            : `products/${product.images[0]}`;
+            ? `/products/${product.images[1]}`
+            : `/products/${product.images[0]}`;
         return { className, image };
     }, [isHovered, product.images])
 
