@@ -3,7 +3,7 @@ import { IProduct } from "@/interfaces";
 import { Product } from "@/models";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type Data = { message: string } | IProduct[];
+type Data = { message: string } | IProduct;
 
 export default function handler(
   req: NextApiRequest,
@@ -11,7 +11,7 @@ export default function handler(
 ) {
   switch (req.method) {
     case "GET":
-      return getProducts(req, res);
+      return getProductsBySlug(req, res);
 
     default:
       return res.status(400).json({
@@ -19,21 +19,24 @@ export default function handler(
       });
   }
 }
-const getProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  const { gender = "all" } = req.query;
 
-  let condition = {};
-
-  if (gender !== "all" && SHOP_CONSTANTS.validGenders.includes(`${gender}`)) {
-    condition = { gender };
-  }
-
+const getProductsBySlug = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) => {
   await db.connect();
-  const products = await Product.find(condition)
-    .select("title images price inStock slug -_id")
+  const { slug } = req.query;
+  const product = await Product.findOne({ slug })
+    // .select("title images price inStock slug -_id")
     .lean();
 
   await db.disconnect();
 
-  return res.status(200).json(products);
+  if (!product) {
+    return res.status(404).json({
+      message: "Producto no encontrado"
+    });
+  }
+
+  return res.status(200).json(product);
 };
